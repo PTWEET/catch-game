@@ -14,7 +14,7 @@ def main():
     background.fill("papayawhip")
 
     #load an image
-    cardinal = pygame.image.load("Doc.png")
+    cardinal = pygame.image.load("comet.png")
     #cardinal = cardinal.convert()
     cardinal = cardinal.convert_alpha()
     cardinal = pygame.transform.scale(cardinal, (100, 100))
