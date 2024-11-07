@@ -1,57 +1,41 @@
 import pygame
+import random
 
 def main():
     pygame.init()
 
-    #Display
     screen = pygame.display.set_mode((640, 480))
-    pygame.display.set_caption("Charlie!")
+    pygame.display.set_caption("Doctor!")
 
-    #Entities
-    #yellow background
-    background = pygame.Surface(screen.get_size())
+    background = pygame.image.load("dark.jpg")
     background = background.convert()
-    background.fill("papayawhip")
 
-    #load an image
     cardinal = pygame.image.load("comet.png")
-    #cardinal = cardinal.convert()
     cardinal = cardinal.convert_alpha()
     cardinal = pygame.transform.scale(cardinal, (100, 100))
 
-    # set up some cardinal variables
-    cardinal_x = 0
-    cardinal_y = 200
+    cardinal_x = random.randint(0, screen.get_width()-100)
+    cardinal_y = random.randint(0, screen.get_height()-100)
 
-    #ACTION
-
-        #Assign
     clock = pygame.time.Clock()
     keepGoing = True
 
-        #Loop
-    while keepGoing:
 
-        #Time
+    while keepGoing:
         clock.tick(30)
 
-        #Events
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 keepGoing = False
 
-        #modify cardinal value
-        # cardinal_x += 5
-        # #check boundaries
-        # if cardinal_x > screen.get_width():
-        #     cardinal_x = 0
-
         cardinal_y += 5
         if cardinal_y > screen.get_height():
-            cardinal_y = 0
-
-
-        #Refresh screen
+            cardinal_y = random.randint(-100,0)
+            cardinal_x = random.randint(0, screen.get_width()-100)
+        cardinal_x += 5
+        if cardinal_x > screen.get_width():
+            cardinal_x = random.randint(-100,0)
+            cardinal_y = random.randint(0, screen.get_height()-100)
         screen.blit(background, (0, 0))
         screen.blit(cardinal, (cardinal_x, cardinal_y))
         pygame.display.flip()
